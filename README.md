@@ -1,7 +1,7 @@
-
-# flutter_application_1
-
-A new Flutter project.
-=======
-# Restaurante_flutter
-Aplicacion para un restaurante con flutter
+# APP DE RESTAURANTE CON FLUTTER
+## DEPENDENCIAS USADAS
+  * flutter_test:
+  * sdk: flutter
+  * flutter_lints: ^4.0.0
+  * sqflite: ^2.3.3+1
+  * path: ^1.8.0
