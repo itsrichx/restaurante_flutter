@@ -30,7 +30,7 @@ class MapSampleState extends State<MapSample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Google Maps Flutter'),
+        title: Text('Ubicación de Restaurante Lucario '),
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(
