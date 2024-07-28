@@ -3,6 +3,7 @@ import 'login.dart';
 import 'cliente_form.dart';
 import 'order_form.dart';
 import 'survey_form.dart';
+import 'location_form.dart';
 
 class MenuFormPage extends StatefulWidget {
   @override
@@ -87,6 +88,17 @@ class _MenuFormPageState extends State<MenuFormPage> {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.location_on, color: Colors.black),
+              title: Text('Ubicación'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapSample()),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -167,5 +179,11 @@ class _MenuFormPageState extends State<MenuFormPage> {
 void main() {
   runApp(MaterialApp(
     home: LoginForm(),
+    routes: {
+      '/login': (context) => LoginForm(),
+      '/cliente': (context) => MyHomePage(),
+      '/order': (context) => OrderFormPage(),
+      '/survey': (context) => SurveyFormPage(),
+    },
   ));
 }
