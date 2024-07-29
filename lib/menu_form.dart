@@ -20,7 +20,7 @@ class _MenuFormPageState extends State<MenuFormPage> {
           "Restaurante Mega Lucario",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 110, 0, 0),
       ),
       drawer: Drawer(
         child: ListView(
@@ -28,7 +28,7 @@ class _MenuFormPageState extends State<MenuFormPage> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: const Color.fromARGB(255, 167, 6, 6),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

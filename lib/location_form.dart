@@ -31,13 +31,13 @@ class MapSampleState extends State<MapSample> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ubicación de Restaurante Lucario '),
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Color.fromARGB(255, 126, 5, 5),
       ),
       body: GoogleMap(
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
           target: _center,
-          zoom: 11.0,
+          zoom: 17.0,
         ),
       ),
     );
