@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'menu_form.dart';
+import 'menu2_form.dart';
 class LoginForm extends StatefulWidget {
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -74,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                     if (_passwordController.text == claveCorrecta) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MenuFormPage()),
+                        MaterialPageRoute(builder: (context) => Menu2FormPage()),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

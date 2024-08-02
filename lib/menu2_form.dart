@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'location_form.dart';
-import 'empresa_form.dart';
-import 'productos_form.dart';
+import 'cliente_form.dart';
+import 'order_form.dart';
+import 'survey_form.dart';
+import 'menu_form.dart';
 
-class MenuFormPage extends StatefulWidget {
+class Menu2FormPage extends StatefulWidget {
   @override
-  _MenuFormPageState createState() => _MenuFormPageState();
+  _Menu2FormPageState createState() => _Menu2FormPageState();
 }
 
-class _MenuFormPageState extends State<MenuFormPage> {
+class _Menu2FormPageState extends State<Menu2FormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,52 +48,45 @@ class _MenuFormPageState extends State<MenuFormPage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home, color: Colors.black),
-              title: Text('Inicio'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info, color: Colors.black),
-              title: Text('Nosotros'),
+              leading: Icon(Icons.person, color: Colors.black),
+              title: Text('Clientes'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EmpresaFormPage()),
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomePage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.production_quantity_limits, color: Colors.black),
-              title: Text('Productos'),
+              leading: Icon(Icons.work, color: Colors.black),
+              title: Text('Orden de pedido'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProductosFormPage()),
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.book, color: Colors.black),
+              title: Text('Encuestas'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SurveyFormPage()),
                 );
               },
             ),
             ListTile(
               leading: Icon(Icons.login, color: Colors.black),
-              title: Text('Iniciar Sesión'),
+              title: Text('Cerrar Sesión'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => LoginForm())
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on, color: Colors.black),
-              title: Text('Ubicación'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MapSample()),
+                MaterialPageRoute(builder: (context) => MenuFormPage())
                 );
               },
             ),
@@ -172,12 +165,4 @@ class _MenuFormPageState extends State<MenuFormPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: LoginForm(),
-    routes: {
-    },
-  ));
 }
