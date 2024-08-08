@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/clientes_list.dart';
 import 'database_cuarto.dart';
 
 class MyHomePage extends StatefulWidget {
+  @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -175,7 +177,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.amber),
                     onPressed: _addClient,
-                    child: Text('Enviar'))
+                    child: Text('Enviar')
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.amber),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ClientesListPage()),
+                    );
+                  }, child: Text('Ver Clientes'),
+                )
               ],
             ),
           ),
