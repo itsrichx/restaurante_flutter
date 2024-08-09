@@ -8,18 +8,19 @@ class ClientesListPage extends StatefulWidget {
 
 class _ClientesListPageState extends State<ClientesListPage> {
   late DatabaseCuarto _databaseCuarto;
-  late Future<List<Map<String, dynamic>>> _clientesList;
+  List<Map<String, dynamic>> _clientes = [];
 
   @override
   void initState() {
     super.initState();
     _databaseCuarto = DatabaseCuarto();
-    _loadClients();
+    _fetchClientes();
   }
 
-  void _loadClients() {
+  void _fetchClientes() async {
+    final data = await _databaseCuarto.getAllClients();
     setState(() {
-      _clientesList = _databaseCuarto.getAllClients();
+      _clientes = data;
     });
   }
 
@@ -28,38 +29,53 @@ class _ClientesListPageState extends State<ClientesListPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Lista de Clientes"),
+        title: Text('Lista de Clientes'),
         backgroundColor: Colors.black,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.amber),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
       ),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: _clientesList,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error al cargar los clientes'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No hay clientes registrados'));
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final client = snapshot.data![index];
-                return ListTile(
-                  title: Text('${client['nombre']} ${client['apellido']}'),
-                  subtitle: Text('Correo: ${client['correo']}\nTeléfono: ${client['telefono']}'),
-                  isThreeLine: true,
-                );
-              },
-            );
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: _clientes.isEmpty
+            ? Center(
+                child: Text(
+                  'No hay clientes registrados',
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+              )
+            : ListView.builder(
+                itemCount: _clientes.length,
+                itemBuilder: (context, index) {
+                  final cliente = _clientes[index];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 16.0),
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${cliente['nombre']} ${cliente['apellido']}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8.0),
+                        Text('Correo: ${cliente['correo']}'),
+                        Text('Teléfono: ${cliente['telefono']}'),
+                      ],
+                    ),
+                  );
+                },
+              ),
       ),
     );
   }
